@@ -1,12 +1,11 @@
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-public class NumberCorrespondence
+class NumberCorrespondence
 {
     private int number;
     private ArrayList<String> numberCorrespondenceArray;
 
-    public NumberCorrespondence(int number) throws IllegalArgumentException
+    NumberCorrespondence(int number) throws IllegalArgumentException
     {
         if ((number < 1) || (number > 9))
             throw new IllegalArgumentException();
@@ -15,12 +14,12 @@ public class NumberCorrespondence
         this.numberCorrespondenceArray = new ArrayList<String>();
     }
 
-    public int getNumber()
+    int getNumber()
     {
         return number;
     }
 
-    public ArrayList<String> getNumberCorrespondenceArray()
+    ArrayList<String> getNumberCorrespondenceArray()
     {
         switch (this.number)
         {

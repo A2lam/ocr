@@ -24,58 +24,58 @@ class NumberCorrespondence
         switch (this.number)
         {
             case 1:
-                this.numberCorrespondenceArray.add("  ");
-                this.numberCorrespondenceArray.add(" |");
-                this.numberCorrespondenceArray.add(" |");
-                this.numberCorrespondenceArray.add("  ");
+                this.numberCorrespondenceArray.add("   ");
+                this.numberCorrespondenceArray.add(" | ");
+                this.numberCorrespondenceArray.add(" | ");
+                this.numberCorrespondenceArray.add("   ");
                 break;
             case 2:
-                this.numberCorrespondenceArray.add(" _");
+                this.numberCorrespondenceArray.add(" _ ");
                 this.numberCorrespondenceArray.add(" _|");
                 this.numberCorrespondenceArray.add("|_ ");
-                this.numberCorrespondenceArray.add("  ");
+                this.numberCorrespondenceArray.add("   ");
                 break;
             case 3:
                 this.numberCorrespondenceArray.add(" _ ");
                 this.numberCorrespondenceArray.add(" _|");
                 this.numberCorrespondenceArray.add(" _|");
-                this.numberCorrespondenceArray.add("  ");
+                this.numberCorrespondenceArray.add("   ");
                 break;
             case 4:
-                this.numberCorrespondenceArray.add("  ");
+                this.numberCorrespondenceArray.add("   ");
                 this.numberCorrespondenceArray.add("|_|");
                 this.numberCorrespondenceArray.add("  |");
-                this.numberCorrespondenceArray.add("  ");
+                this.numberCorrespondenceArray.add("   ");
                 break;
             case 5:
                 this.numberCorrespondenceArray.add(" _ ");
                 this.numberCorrespondenceArray.add("|_ ");
                 this.numberCorrespondenceArray.add(" _|");
-                this.numberCorrespondenceArray.add("  ");
+                this.numberCorrespondenceArray.add("   ");
                 break;
             case 6:
                 this.numberCorrespondenceArray.add(" _ ");
                 this.numberCorrespondenceArray.add("|_ ");
                 this.numberCorrespondenceArray.add("|_|");
-                this.numberCorrespondenceArray.add("  ");
+                this.numberCorrespondenceArray.add("   ");
                 break;
             case 7:
                 this.numberCorrespondenceArray.add(" _ ");
                 this.numberCorrespondenceArray.add("  |");
                 this.numberCorrespondenceArray.add("  |");
-                this.numberCorrespondenceArray.add("  ");
+                this.numberCorrespondenceArray.add("   ");
                 break;
             case 8:
                 this.numberCorrespondenceArray.add(" _ ");
                 this.numberCorrespondenceArray.add("|_|");
                 this.numberCorrespondenceArray.add("|_|");
-                this.numberCorrespondenceArray.add("  ");
+                this.numberCorrespondenceArray.add("   ");
                 break;
             case 9:
                 this.numberCorrespondenceArray.add(" _ ");
                 this.numberCorrespondenceArray.add("|_|");
                 this.numberCorrespondenceArray.add(" _|");
-                this.numberCorrespondenceArray.add("  ");
+                this.numberCorrespondenceArray.add("   ");
                 break;
         }
 

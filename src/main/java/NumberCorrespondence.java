@@ -14,7 +14,7 @@ class NumberCorrespondence
         return this.numberBloc;
     }
 
-    int getNumberBlocCorrespondenceInt()
+    int getNumberBlocCorrespondantInt()
     {
         /*
          * Construction de l'arbre de correspondance

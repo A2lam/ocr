@@ -42,7 +42,7 @@ class Parser
         StringBuilder decodedMessage = new StringBuilder();
         for (NumberCorrespondence numberBloc : this.numberCorrespondenceList)
         {
-            decodedMessage.append(String.valueOf(numberBloc.getNumberBlocCorrespondenceInt()));
+            decodedMessage.append(String.valueOf(numberBloc.getNumberBlocCorrespondantInt()));
         }
 
         System.out.println(String.valueOf(decodedMessage));

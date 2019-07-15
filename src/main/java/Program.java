@@ -8,16 +8,23 @@ public class Program
         try
         {
             BufferedReader bufferedReader = new BufferedReader(new FileReader("in.txt"));
-            ArrayList<String> message = new ArrayList<String>();
-            for (int i = 0; i < 3; i++)
+            String line = bufferedReader.readLine();
+            while (null != line)
             {
-                String line = bufferedReader.readLine();
+                ArrayList<String> message = new ArrayList<String>();
                 message.add(line);
-            }
-            bufferedReader.readLine();
+                for (int i = 0; i < 2; i++)
+                {
+                    line = bufferedReader.readLine();
+                    message.add(line);
+                }
+                bufferedReader.readLine(); // Saut de la 4e ligne qui est vide
 
-            Parser numberParser = new Parser(message);
-            numberParser.parse();
+                Parser numberParser = new Parser(message);
+                numberParser.parse();
+
+                line = bufferedReader.readLine();
+            }
         }
         catch (FileNotFoundException e)
         {

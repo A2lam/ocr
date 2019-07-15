@@ -22,9 +22,21 @@ class NumberCorrespondence
         if (this.numberBloc.get(0).equals("   "))
         {
             if (this.numberBloc.get(1).equals(" | "))
-                return 1;
+            {
+                if (this.numberBloc.get(2).equals(" | "))
+                    return 1;
+                else
+                    return -1;
+            }
+            else if (this.numberBloc.get(1).equals("|_|"))
+            {
+                if (this.numberBloc.get(2).equals("  |"))
+                    return 4;
+                else
+                    return -1;
+            }
             else
-                return 4; // Le seul autre choix possible
+                return -1;
         }
         else // Si le premier bloc correspond à " _ "
         {
@@ -32,25 +44,32 @@ class NumberCorrespondence
             {
                 if (this.numberBloc.get(2).equals(" _|"))
                     return 5;
-                else
+                else if (this.numberBloc.get(2).equals("|_|"))
                     return 6;
+                else
+                    return -1;
             }
             else if (this.numberBloc.get(1).equals(" _|"))
             {
                 if (this.numberBloc.get(2).equals("|_ "))
                     return 2;
-                else
+                else if (this.numberBloc.get(2).equals(" _|"))
                     return 3;
+                else
+                    return -1;
             }
             else if (this.numberBloc.get(1).equals("|_|"))
             {
                 if (this.numberBloc.get(2).equals("|_|"))
                     return 8;
-                else
+                else if (this.numberBloc.get(2).equals(" _|"))
                     return 9;
+                else return -1;
             }
-            else
+            else if (this.numberBloc.get(1).equals("  |"))
                 return 7;
+            else
+                return -1;
         }
     }
 }

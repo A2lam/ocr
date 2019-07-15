@@ -56,16 +56,20 @@ class Parser
         StringBuilder decodedMessage = new StringBuilder();
         for (NumberCorrespondence numberBloc : this.numberCorrespondenceList)
         {
-            decodedMessage.append(String.valueOf(numberBloc.getNumberBlocCorrespondantInt()));
+            int correspondantInt = numberBloc.getNumberBlocCorrespondantInt();
+            if (-1 != correspondantInt)
+                decodedMessage.append(String.valueOf(correspondantInt));
+            else
+                decodedMessage.append("?");
         }
 
-        boolean isChecksumValid = this.calculateChecksum(String.valueOf(decodedMessage));
-        if (isChecksumValid)
+        String stringifiedDecodedMessage = String.valueOf(decodedMessage);
+        if (stringifiedDecodedMessage.contains("?"))
         {
-            System.out.println(String.valueOf(decodedMessage));
+            System.out.println(stringifiedDecodedMessage + " ILL");
             try
             {
-                this.bufferedWriter.write(String.valueOf(decodedMessage));
+                this.bufferedWriter.write(stringifiedDecodedMessage + " ILL");
             }
             catch (IOException e)
             {
@@ -74,14 +78,30 @@ class Parser
         }
         else
         {
-            System.out.println(String.valueOf(decodedMessage) + " ERR");
-            try
+            boolean isChecksumValid = this.calculateChecksum(stringifiedDecodedMessage);
+            if (isChecksumValid)
             {
-                this.bufferedWriter.write(String.valueOf(decodedMessage) + " ERR");
+                System.out.println(stringifiedDecodedMessage);
+                try
+                {
+                    this.bufferedWriter.write(stringifiedDecodedMessage);
+                }
+                catch (IOException e)
+                {
+                    e.printStackTrace();
+                }
             }
-            catch (IOException e)
+            else
             {
-                e.printStackTrace();
+                System.out.println(stringifiedDecodedMessage + " ERR");
+                try
+                {
+                    this.bufferedWriter.write(stringifiedDecodedMessage + " ERR");
+                }
+                catch (IOException e)
+                {
+                    e.printStackTrace();
+                }
             }
         }
     }

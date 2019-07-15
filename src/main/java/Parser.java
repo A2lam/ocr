@@ -37,7 +37,7 @@ class Parser
         return this.message;
     }
 
-    boolean calculateChecksum(String decodedMessage)
+    private boolean calculateChecksum(String decodedMessage)
     {
         int checksum = 0;
         int position = 9;
@@ -48,32 +48,7 @@ class Parser
             position--;
         }
 
-        if (checksum % 11 == 0)
-        {
-            System.out.println("Le checksum est valide");
-            try
-            {
-                this.bufferedWriter.write("Le checksum est valide");
-            }
-            catch (IOException e)
-            {
-                e.printStackTrace();
-            }
-            return true;
-        }
-        else
-        {
-            System.out.println("Le checksum n'est pas valide");
-            try
-            {
-                this.bufferedWriter.write("Le checksum n'est pas valide");
-            }
-            catch (IOException e)
-            {
-                e.printStackTrace();
-            }
-            return false;
-        }
+        return checksum % 11 == 0;
     }
 
     void parse()
@@ -84,15 +59,30 @@ class Parser
             decodedMessage.append(String.valueOf(numberBloc.getNumberBlocCorrespondantInt()));
         }
 
-        System.out.println(String.valueOf(decodedMessage));
-        this.calculateChecksum(String.valueOf(decodedMessage));
-        try
+        boolean isChecksumValid = this.calculateChecksum(String.valueOf(decodedMessage));
+        if (isChecksumValid)
         {
-            this.bufferedWriter.write(String.valueOf(decodedMessage));
+            System.out.println(String.valueOf(decodedMessage));
+            try
+            {
+                this.bufferedWriter.write(String.valueOf(decodedMessage));
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
         }
-        catch (IOException e)
+        else
         {
-            e.printStackTrace();
+            System.out.println(String.valueOf(decodedMessage) + " ERR");
+            try
+            {
+                this.bufferedWriter.write(String.valueOf(decodedMessage) + " ERR");
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
         }
     }
 }

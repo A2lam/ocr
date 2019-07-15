@@ -37,6 +37,45 @@ class Parser
         return this.message;
     }
 
+    boolean calculateChecksum(String decodedMessage)
+    {
+        int checksum = 0;
+        int position = 9;
+        for (char c: decodedMessage.toCharArray())
+        {
+            int number = Integer.parseInt(String.valueOf(c)) * position;
+            checksum += number;
+            position--;
+        }
+
+        if (checksum % 11 == 0)
+        {
+            System.out.println("Le checksum est valide");
+            try
+            {
+                this.bufferedWriter.write("Le checksum est valide");
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+            return true;
+        }
+        else
+        {
+            System.out.println("Le checksum n'est pas valide");
+            try
+            {
+                this.bufferedWriter.write("Le checksum n'est pas valide");
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+            return false;
+        }
+    }
+
     void parse()
     {
         StringBuilder decodedMessage = new StringBuilder();
@@ -46,6 +85,7 @@ class Parser
         }
 
         System.out.println(String.valueOf(decodedMessage));
+        this.calculateChecksum(String.valueOf(decodedMessage));
         try
         {
             this.bufferedWriter.write(String.valueOf(decodedMessage));

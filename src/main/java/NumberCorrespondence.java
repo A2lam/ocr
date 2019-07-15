@@ -2,83 +2,55 @@ import java.util.ArrayList;
 
 class NumberCorrespondence
 {
-    private int number;
-    private ArrayList<String> numberCorrespondenceArray;
+    private ArrayList<String> numberBloc;
 
-    NumberCorrespondence(int number) throws IllegalArgumentException
+    NumberCorrespondence(ArrayList<String> numberBloc)
     {
-        if ((number < 1) || (number > 9))
-            throw new IllegalArgumentException();
-
-        this.number = number;
-        this.numberCorrespondenceArray = new ArrayList<String>();
+        this.numberBloc = numberBloc;
     }
 
-    int getNumber()
+    ArrayList<String> getNumberBloc()
     {
-        return number;
+        return this.numberBloc;
     }
 
-    ArrayList<String> getNumberCorrespondenceArray()
+    int getNumberBlocCorrespondenceInt()
     {
-        switch (this.number)
+        /*
+         * Construction de l'arbre de correspondance
+         */
+        if (this.numberBloc.get(0).equals("   "))
         {
-            case 1:
-                this.numberCorrespondenceArray.add("   ");
-                this.numberCorrespondenceArray.add(" | ");
-                this.numberCorrespondenceArray.add(" | ");
-                this.numberCorrespondenceArray.add("   ");
-                break;
-            case 2:
-                this.numberCorrespondenceArray.add(" _ ");
-                this.numberCorrespondenceArray.add(" _|");
-                this.numberCorrespondenceArray.add("|_ ");
-                this.numberCorrespondenceArray.add("   ");
-                break;
-            case 3:
-                this.numberCorrespondenceArray.add(" _ ");
-                this.numberCorrespondenceArray.add(" _|");
-                this.numberCorrespondenceArray.add(" _|");
-                this.numberCorrespondenceArray.add("   ");
-                break;
-            case 4:
-                this.numberCorrespondenceArray.add("   ");
-                this.numberCorrespondenceArray.add("|_|");
-                this.numberCorrespondenceArray.add("  |");
-                this.numberCorrespondenceArray.add("   ");
-                break;
-            case 5:
-                this.numberCorrespondenceArray.add(" _ ");
-                this.numberCorrespondenceArray.add("|_ ");
-                this.numberCorrespondenceArray.add(" _|");
-                this.numberCorrespondenceArray.add("   ");
-                break;
-            case 6:
-                this.numberCorrespondenceArray.add(" _ ");
-                this.numberCorrespondenceArray.add("|_ ");
-                this.numberCorrespondenceArray.add("|_|");
-                this.numberCorrespondenceArray.add("   ");
-                break;
-            case 7:
-                this.numberCorrespondenceArray.add(" _ ");
-                this.numberCorrespondenceArray.add("  |");
-                this.numberCorrespondenceArray.add("  |");
-                this.numberCorrespondenceArray.add("   ");
-                break;
-            case 8:
-                this.numberCorrespondenceArray.add(" _ ");
-                this.numberCorrespondenceArray.add("|_|");
-                this.numberCorrespondenceArray.add("|_|");
-                this.numberCorrespondenceArray.add("   ");
-                break;
-            case 9:
-                this.numberCorrespondenceArray.add(" _ ");
-                this.numberCorrespondenceArray.add("|_|");
-                this.numberCorrespondenceArray.add(" _|");
-                this.numberCorrespondenceArray.add("   ");
-                break;
+            if (this.numberBloc.get(1).equals(" | "))
+                return 1;
+            else
+                return 4; // Le seul autre choix possible
         }
-
-        return this.numberCorrespondenceArray;
+        else // Si le premier bloc correspond à " _ "
+        {
+            if (this.numberBloc.get(1).equals("|_ "))
+            {
+                if (this.numberBloc.get(2).equals(" _|"))
+                    return 5;
+                else
+                    return 6;
+            }
+            else if (this.numberBloc.get(1).equals(" _|"))
+            {
+                if (this.numberBloc.get(2).equals("|_ "))
+                    return 2;
+                else
+                    return 3;
+            }
+            else if (this.numberBloc.get(1).equals("|_|"))
+            {
+                if (this.numberBloc.get(2).equals("|_|"))
+                    return 8;
+                else
+                    return 9;
+            }
+            else
+                return 7;
+        }
     }
 }

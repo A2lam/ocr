@@ -5,11 +5,11 @@ import java.util.ArrayList;
 
 class Parser
 {
-    private String message;
+    private ArrayList<String> message;
     private ArrayList<NumberCorrespondence> numberCorrespondenceList;
     private BufferedWriter bufferedWriter;
 
-    Parser(String message)
+    Parser(ArrayList<String> message)
     {
         this.message = message;
         this.numberCorrespondenceList = new ArrayList<NumberCorrespondence>();
@@ -22,38 +22,37 @@ class Parser
             e.printStackTrace();
         }
 
-        for (char c: this.message.toCharArray())
+        for (int i = 0; i < 27; i += 3)
         {
-            numberCorrespondenceList.add(new NumberCorrespondence((Integer.parseInt(String.valueOf(c)))));
+            ArrayList<String> numberBloc = new ArrayList<String>();
+            for (String line : this.message)
+                numberBloc.add(line.substring(i, (i + 3)));
+
+            numberCorrespondenceList.add(new NumberCorrespondence((numberBloc)));
         }
     }
 
-    String getMessage()
+    ArrayList<String> getMessage()
     {
         return this.message;
     }
 
     void parse()
     {
-        for (int i = 0; i < 4; i++)
+        StringBuilder decodedMessage = new StringBuilder();
+        for (NumberCorrespondence numberBloc : this.numberCorrespondenceList)
         {
-            StringBuilder line = new StringBuilder();
-            for (NumberCorrespondence correspondence: this.numberCorrespondenceList)
-            {
-                line.append(correspondence.getNumberCorrespondenceArray().get(i));
-            }
-
-            System.out.println(line);
-
-            try
-            {
-                this.bufferedWriter.write(String.valueOf(line));
-            }
-            catch (IOException e)
-            {
-                e.printStackTrace();
-            }
+            decodedMessage.append(String.valueOf(numberBloc.getNumberBlocCorrespondenceInt()));
         }
-        System.out.println();
+
+        System.out.println(String.valueOf(decodedMessage));
+        try
+        {
+            this.bufferedWriter.write(String.valueOf(decodedMessage));
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
     }
 }

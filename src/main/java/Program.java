@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.ArrayList;
 
 public class Program
 {
@@ -7,13 +8,16 @@ public class Program
         try
         {
             BufferedReader bufferedReader = new BufferedReader(new FileReader("in.txt"));
-            String message = bufferedReader.readLine();
-            while (null != message)
+            ArrayList<String> message = new ArrayList<String>();
+            for (int i = 0; i < 3; i++)
             {
-                Parser numberParser = new Parser(message);
-                numberParser.parse();
-                message = bufferedReader.readLine();
+                String line = bufferedReader.readLine();
+                message.add(line);
             }
+            bufferedReader.readLine();
+
+            Parser numberParser = new Parser(message);
+            numberParser.parse();
         }
         catch (FileNotFoundException e)
         {

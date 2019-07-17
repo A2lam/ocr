@@ -15,7 +15,7 @@ class Parser
         this.numberCorrespondenceList = new ArrayList<NumberCorrespondence>();
         try
         {
-            this.bufferedWriter = new BufferedWriter(new FileWriter("out.txt"));
+            this.bufferedWriter = new BufferedWriter(new FileWriter("out.txt", true));
         }
         catch (IOException e)
         {
@@ -70,6 +70,8 @@ class Parser
             try
             {
                 this.bufferedWriter.write(stringifiedDecodedMessage + " ILL");
+                this.bufferedWriter.newLine();
+                this.bufferedWriter.close();
             }
             catch (IOException e)
             {
@@ -85,6 +87,8 @@ class Parser
                 try
                 {
                     this.bufferedWriter.write(stringifiedDecodedMessage);
+                    this.bufferedWriter.newLine();
+                    this.bufferedWriter.close();
                 }
                 catch (IOException e)
                 {
@@ -97,6 +101,8 @@ class Parser
                 try
                 {
                     this.bufferedWriter.write(stringifiedDecodedMessage + " ERR");
+                    this.bufferedWriter.newLine();
+                    this.bufferedWriter.close();
                 }
                 catch (IOException e)
                 {

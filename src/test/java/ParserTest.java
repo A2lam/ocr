@@ -36,6 +36,34 @@ class ParserTest
         assertEquals("123456789\n", outContent.toString());
     }
 
+    @Test
+    void coded173456789_should_display_123456789ERR()
+    {
+        ArrayList<String> encodedMessage = new ArrayList<String>();
+        encodedMessage.add("    _  _     _  _  _  _  _ ");
+        encodedMessage.add(" |   | _||_||_ |_   ||_||_|");
+        encodedMessage.add(" |   | _|  | _||_|  ||_| _|");
+        encodedMessage.add("                           ");
+
+        Parser numberParser = new Parser(encodedMessage);
+        numberParser.parse();
+        assertEquals("173456789 ERR\n", outContent.toString());
+    }
+
+    @Test
+    void coded17345678ill_should_display_12345678QMILL()
+    {
+        ArrayList<String> encodedMessage = new ArrayList<String>();
+        encodedMessage.add("    _  _     _  _  _  _    ");
+        encodedMessage.add(" |   | _||_||_ |_   ||_||_|");
+        encodedMessage.add(" |   | _|  | _||_|  ||_| _|");
+        encodedMessage.add("                           ");
+
+        Parser numberParser = new Parser(encodedMessage);
+        numberParser.parse();
+        assertEquals("17345678? ILL\n", outContent.toString());
+    }
+
     @AfterEach
     void restoreStreams()
     {
